@@ -14,7 +14,7 @@ Ce projet est une application open source qui permet de générer des articles p
 
 1. Clonez le dépôt :
    ```bash
-   git clone https://github.com/kimitoshikurosawa/social-media-content-generator.git
+   git clone https://github.com/kimitoshikurosawa/social_media_content_generator.git
    
 2. Créez un environnement virtuel et installez les dépendances :
     ```bash
@@ -51,4 +51,3 @@ Consultez le fichier CONTRIBUTING.md pour savoir comment contribuer à ce projet
 ## Licence
 
 Ce projet est distribué sous la licence MIT. Pour plus d'informations, consultez le fichier LICENSE.
-
