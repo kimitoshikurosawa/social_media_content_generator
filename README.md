@@ -29,20 +29,22 @@ Ce projet est une application open source qui permet de générer des articles p
    
 4. Lancez l'application :
     ```bash
-    python web/run.py
-      
+    export PYTHONPATH=.
+   python web/run.py
+   
 ## Utilisation
 
 1. Rendez-vous sur http://localhost:5000 pour accéder à l'interface web
 2. Cliquez sur "Générer" pour obtenir des articles
-3. Prévisualisez les articles et cliquez sur "Publier" pour les partager sur les réseaux sociaux
-4. Consultez la base de données SQLite pour voir les articles sauvegardés
-5. Modifiez les paramètres de scraping et de génération dans `config.py`
-6. Personnalisez le design de l'interface web en modifiant les templates HTML dans `web/templates`
-7. Ajoutez des routes pour d'autres réseaux sociaux dans `web/routes.py`
-8. Ameliorez la génération de texte en utilisant la documentation de l'API Gemini (https://colab.research.google.com/github/google/generative-ai-docs/blob/main/site/en/gemini-api/docs/get-started/python.ipynb)
-9. Intégrez des services tiers pour enrichir le contenu généré (ex. API de traduction, de génération d'images, etc.)
-10. Déployez l'application sur un serveur pour automatiser la publication d'articles
+3. Configurer vos access réseaux sociaux dans le fichier .env example facebook (https://developers.facebook.com/docs/graph-api/get-started)
+4. Prévisualisez les articles et cliquez sur "Publier" pour les partager sur les réseaux sociaux
+5. Consultez la base de données SQLite pour voir les articles sauvegardés
+6. Modifiez les paramètres de scraping et de génération dans `config.py`
+7. Personnalisez le design de l'interface web en modifiant les templates HTML dans `web/templates`
+8. Ajoutez des routes pour d'autres réseaux sociaux dans `web/routes.py`
+9. Ameliorez la génération de texte en utilisant la documentation de l'API Gemini (https://colab.research.google.com/github/google/generative-ai-docs/blob/main/site/en/gemini-api/docs/get-started/python.ipynb)
+10. Intégrez des services tiers pour enrichir le contenu généré (ex. API de traduction, de génération d'images, etc.)
+11. Déployez l'application sur un serveur pour automatiser la publication d'articles
 
 ## Contribution
 
