@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prévisualisation des Articles</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .pre-wrap {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<div class="container my-4">
+    <h1 class="mb-4">Générer les propositions d'articles</h1>
+    <form method="post" class="mb-5">
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-sync-alt"></i> Générer
+        </button>
+    </form>
+    <!--generer par category tech gaming ou manga -->
+    <form method="post" class="mb-5" action="{{url_for('main.generate_article_theme')}}">
+        <div class="input-group">
+            <select name="category" class="form-select">
+                <option value="tech">Tech</option>
+                <option value="gaming">Gaming</option>
+                <option value="manga">Manga</option>
+            </select>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sync-alt"></i> Générer par catégorie
+            </button>
+        </div>
+    </form>
+
+    <h2 class="mb-4">Prévisualisation des Articles par Thématique</h2>
+    {% for theme, articles_list in articles.items() %}
+    <div class="mb-5">
+        <h3 class="text-uppercase">{{ theme }}</h3>
+        {% for article in articles_list %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <h4>{{ article.title }}</h4>
+                <small class="text-muted">Créé le {{ article.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+            </div>
+            <div class="card-body">
+                <!-- Utilisation de la classe CSS pre-wrap pour appliquer les sauts de ligne -->
+                <p class="card-text pre-wrap">{{ article.content | safe }}</p>
+                <div class="d-flex justify-content-end">
+                    <!-- Publication sur Facebook -->
+                    <form action="{{ url_for('main.publish_fb', article_id=article.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-outline-primary me-2" title="Publier sur Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </button>
+                    </form>
+                    <!-- Publication sur Instagram -->
+                    <form action="{{ url_for('main.publish_insta', article_id=article.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-outline-danger me-2" title="Publier sur Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </button>
+                    </form>
+                    <!-- Publication sur LinkedIn -->
+                    <form action="{{ url_for('main.publish_linkedin', article_id=article.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-outline-info" title="Publier sur LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Pagination (si disponible) -->
+        {% if pagination and pagination.get(theme) %}
+        <nav aria-label="Pagination pour {{ theme }}">
+            <ul class="pagination justify-content-center">
+                {% for page in pagination[theme].pages %}
+                <li class="page-item {% if page == pagination[theme].current_page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('main.preview', theme=theme, page=page) }}">{{ page }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Bootstrap Bundle with Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

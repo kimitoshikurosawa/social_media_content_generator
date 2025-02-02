@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prévisualisation des Articles</title>
+</head>
+<body>
+<h1>Prévisualisation des Articles par Thématique</h1>
+{% for theme, article in articles.items() %}
+<h2>{{ theme|capitalize }}</h2>
+<h3>{{ article.subject }}</h3>
+<p>{{ article.content }}</p>
+<hr>
+{% endfor %}
+<a href="{{ url_for('main.index') }}">Retour</a>
+</body>
+</html>
