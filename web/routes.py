@@ -1,7 +1,7 @@
 # web/routes.py
 from datetime import datetime
 
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 
 from modules.publisher import publish_to_facebook, publish_to_instagram, publish_to_twitter, publish_to_linkedin
 from modules.scraper import scrape_multiple_sites
@@ -100,7 +100,8 @@ def publish_fb(article_id):
 
     # Appel à la fonction de publication sur Facebook
     publish_to_facebook(article.content)
-    return "Article publié sur Facebook avec succès."
+    flash("Article publié sur Facebook avec succès.", "success")
+    return redirect(url_for("main.index"))
 
 # route for instagram publish
 
